@@ -35,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LCActionSheetCell : UITableViewCell
 
+//hn after add
+@property (nonatomic, weak) UIButton *customView;
+
 /**
  Title label.
  */

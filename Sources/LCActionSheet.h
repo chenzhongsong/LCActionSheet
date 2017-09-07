@@ -232,6 +232,9 @@ typedef void(^LCActionSheetDidDismissHandler)(LCActionSheet *actionSheet, NSUInt
 
 #pragma mark Delegate
 
+//hn after add
++ (instancetype)sheetWithTitle:(NSString *)title delegate:(id<LCActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherCustomImgViews:(NSArray*)imgArrs otherButtonTitles:(NSString *)otherButtonTitles, ...  NS_REQUIRES_NIL_TERMINATION;
+
 /**
  Initialize an instance of LCActionSheet (Delegate).
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F425411AF8353E2DF51D5A4 /* libPods-LCActionSheetDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BABF5E94C346416C78FFEB04 /* libPods-LCActionSheetDemoUITests.a */; };
+		26DDFD8A1EC468900099D403 /* CustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26DDFD891EC468900099D403 /* CustomView.xib */; };
 		4F932C95A05E7901F914D85B /* libPods-LCActionSheetDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C49ACD37EB0B1289EC1C3B /* libPods-LCActionSheetDemoTests.a */; };
 		76485D731D38CB51009DDCA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76485D721D38CB51009DDCA1 /* main.m */; };
 		76485D761D38CB51009DDCA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76485D751D38CB51009DDCA1 /* AppDelegate.m */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26DDFD891EC468900099D403 /* CustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomView.xib; sourceTree = "<group>"; };
 		2DB9F70672AA36F0E26B2D8C /* Pods-LCActionSheetDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCActionSheetDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LCActionSheetDemoTests/Pods-LCActionSheetDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		414C535D1B85BFA6AFA182CC /* Pods-LCActionSheetDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCActionSheetDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LCActionSheetDemo/Pods-LCActionSheetDemo.release.xcconfig"; sourceTree = "<group>"; };
 		51FCF6E15FE9AB9EBD0FE590 /* Pods-LCActionSheetDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LCActionSheetDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LCActionSheetDemoUITests/Pods-LCActionSheetDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				76485D781D38CB51009DDCA1 /* ViewController.m */,
 				76485D7A1D38CB51009DDCA1 /* Main.storyboard */,
 				76485D711D38CB51009DDCA1 /* Supporting Files */,
+				26DDFD891EC468900099D403 /* CustomView.xib */,
 			);
 			path = LCActionSheetDemo;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76485D811D38CB51009DDCA1 /* LaunchScreen.storyboard in Resources */,
+				26DDFD8A1EC468900099D403 /* CustomView.xib in Resources */,
 				76485D7E1D38CB51009DDCA1 /* Assets.xcassets in Resources */,
 				76485D7C1D38CB51009DDCA1 /* Main.storyboard in Resources */,
 			);

@@ -58,20 +58,56 @@
 }
 
 - (IBAction)showDefaultActionSheet {
-    LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:@"Default LCActionSheet"
+//    LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:@"Default LCActionSheet\n\n\n选择你想赠送甜甜圈的个数"
+//                                                      delegate:self
+//                                             cancelButtonTitle:@"Cancel\n取消"
+//                                             otherButtonTitles:@"Button 1", @"Button 2", @"Button 3",@"Button 4 \n自定义", nil];
+//    [actionSheet show];
+    
+    
+    LCActionSheet *customViewActionSheet = [LCActionSheet sheetWithTitle:@"Default LCActionSheet\n\n\n选择你想赠送甜甜圈的个数"
                                                       delegate:self
-                                             cancelButtonTitle:@"Cancel"
-                                             otherButtonTitles:@"Button 1", @"Button 2", @"Button 3", nil];
-    [actionSheet show];
+                                             cancelButtonTitle:@"Cancel\n取消"
+                                            otherCustomImgViews:@[[self otherCustomImgView:@"甜甜圈小"],[self otherCustomImgView:@"甜甜圈小"],[self otherCustomImgView:@"甜甜圈小"],[self otherCustomImgView:@"甜甜圈小"]]
+                                                otherButtonTitles:@" X 1",@" X 5",@" X 10",@" X 自定义", nil];
+    [customViewActionSheet show];
+    
+    
+    
 }
+
+- (UIImage *)otherCustomImgView:(NSString *)imgName{
+    UIImage *img = [UIImage imageNamed:imgName];
+    return img;
+}
+
+- (UIView *)customViewWithStringLab:(NSString *)stringLab {
+    
+    UIView *customView = [[UIView alloc] init];//WithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, 49)
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 10, 16, 16)];
+    imgView.backgroundColor = [UIColor grayColor];
+    imgView.image = [UIImage imageNamed:@"甜甜圈小"];
+    [customView addSubview:imgView];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(126, 10, 100, 16)];
+    label.text = [NSString stringWithFormat:@"X %@", stringLab];
+    label.font = [UIFont systemFontOfSize:16];
+    label.backgroundColor = [UIColor greenColor];
+    [customView addSubview:label];
+    NSLog(@"customView:%@",customView);
+    return customView;
+    
+}
+
 
 - (IBAction)showCustomActionSheet {
     
     LCActionSheet *actionSheet     = [[LCActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
-                                                        otherButtonTitles:@"Button 1", @"Button 2", @"Button 3", @"This is a very very very very very very long button title~", @"Button 5", nil];
-    actionSheet.title              = @"This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very long title~";
+                                                        otherButtonTitles:@"Button 1", @"Button 2", @"Button 3", @"This is a very very very very very very very very very very very long button title~", @"Button 5", nil];
+    actionSheet.title              = @"This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long title~";
     actionSheet.cancelButtonTitle  = @"Close";
     [actionSheet appendButtonsWithTitles:@"Button 6", @"Button 7", nil];
     actionSheet.titleColor         = [UIColor orangeColor];

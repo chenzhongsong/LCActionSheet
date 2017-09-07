@@ -64,6 +64,18 @@
             make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 10.0f, 0, 10.0f));
         }];
         
+        UIButton *customView = [[UIButton alloc] init];
+        customView.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        customView.backgroundColor = [UIColor clearColor];
+        customView.adjustsImageWhenHighlighted = NO;//取消点击效果
+        customView.highlighted = NO;
+        customView.userInteractionEnabled = NO;
+        [self.contentView addSubview:customView];
+        self.customView = customView;
+        [customView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 10.0f, 0, 10.0f));
+        }];
+        
         UIView *lineView  = [[UIView alloc] init];
         lineView.backgroundColor = self.cellSeparatorColor;
         lineView.contentMode   = UIViewContentModeBottom;
@@ -94,5 +106,11 @@
     
     self.highlightedView.hidden = !highlighted;
 }
+
+//- (void)layoutSubviews {
+//    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 10.0f, 0, 10.0f));
+//    }];
+//}
 
 @end

@@ -34,6 +34,8 @@
 @interface LCActionSheet () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray<NSString *> *otherButtonTitles;
+//hn after add
+@property (nonatomic, strong) NSArray<UIImage *> *otherCustomImgViews;
 
 @property (nonatomic, assign) CGSize titleTextSize;
 
@@ -76,6 +78,26 @@
                      cancelButtonTitle:cancelButtonTitle
                  otherButtonTitleArray:tempOtherButtonTitles];
 }
+//hn after add
++ (instancetype)sheetWithTitle:(NSString *)title delegate:(id<LCActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherCustomImgViews:(NSArray*)imgArrs otherButtonTitles:(NSString *)otherButtonTitles, ... {
+    id eachObject;
+    va_list argumentList;
+    NSMutableArray *tempOtherButtonTitles = nil;
+    if (otherButtonTitles) {
+        tempOtherButtonTitles = [[NSMutableArray alloc] initWithObjects:otherButtonTitles, nil];
+        va_start(argumentList, otherButtonTitles);
+        while ((eachObject = va_arg(argumentList, id))) {
+            [tempOtherButtonTitles addObject:eachObject];
+        }
+        va_end(argumentList);
+    }
+    return [[self alloc] initWithTitle:title
+                              delegate:delegate
+                     cancelButtonTitle:cancelButtonTitle
+                    otherCustomImgViews:imgArrs
+                 otherButtonTitleArray:tempOtherButtonTitles];
+}
+
 
 + (instancetype)sheetWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelButtonTitle clicked:(LCActionSheetClickedHandler)clickedHandler otherButtonTitles:(NSString *)otherButtonTitles, ... {
     id eachObject;
@@ -214,6 +236,22 @@
     }
     return self;
 }
+
+//hn after add
+- (instancetype)initWithTitle:(NSString *)title delegate:(id<LCActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherCustomImgViews:(NSArray*)imgArrs otherButtonTitleArray:(NSArray<NSString *> *)otherButtonTitleArray {
+    if (self = [super init]) {
+        [self config:LCActionSheetConfig.config];
+        
+        self.title             = title;
+        self.delegate          = delegate;
+        self.cancelButtonTitle = cancelButtonTitle;
+        self.otherButtonTitles = otherButtonTitleArray;
+        self.otherCustomImgViews = imgArrs;
+        [self setupView];
+    }
+    return self;
+}
+
 
 - (instancetype)initWithTitle:(NSString *)title delegate:(id<LCActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitleArray:(NSArray<NSString *> *)otherButtonTitleArray {
     if (self = [super init]) {
@@ -860,10 +898,17 @@
                                         reuseIdentifier:cellID];
     }
     
+    /***hn after add** customView和titleLabel不能同时设置 */
+    [cell.customView setImage:self.otherCustomImgViews[indexPath.row] forState:UIControlStateNormal];
+    [cell.customView setTitle:self.otherButtonTitles[indexPath.row] forState:UIControlStateNormal];
+    [cell.customView setTitleColor:self.buttonColor forState:UIControlStateNormal];
+    cell.customView.titleLabel.font = self.buttonFont;
+    /******/
+    
     cell.titleLabel.font      = self.buttonFont;
     cell.titleLabel.textColor = self.buttonColor;
     
-    cell.titleLabel.text = self.otherButtonTitles[indexPath.row];
+    cell.titleLabel.text = cell.customView ? @"" : self.otherButtonTitles[indexPath.row];
     
     cell.cellSeparatorColor = self.separatorColor;
     
@@ -878,8 +923,10 @@
     if (self.destructiveButtonIndexSet) {
         if ([self.destructiveButtonIndexSet containsIndex:indexPath.row + 1]) {
             cell.titleLabel.textColor = self.destructiveButtonColor;
+            [cell.customView setTitleColor:self.destructiveButtonColor forState:UIControlStateNormal];
         } else {
             cell.titleLabel.textColor = self.buttonColor;
+             [cell.customView setTitleColor:self.buttonColor forState:UIControlStateNormal];
         }
     }
     
